@@ -35,47 +35,6 @@ param(
     [string]$LogPath = "C:\HoneyPort_Logs"
 )
 
-function Show-BlueShellAsciiArt {
-    Write-Host "`n"
-    Write-Host "                             .:                             "
-    Write-Host "                           ....:                            "
-    Write-Host "                          :....:--                          "
-    Write-Host "                          ::..::--                          "
-    Write-Host "                         -:::::--==                         "
-    Write-Host "                        ======+++++*                        "
-    Write-Host "       :.:::::      *#######****#####****                   "
-    Write-Host "       ::..::::--+****####%%*=++***#######*    ::           "
-    Write-Host "       -:::.::::--=+******##@##**########%%#=:::-           "
-    Write-Host "        -:::::::---=*******%@#*********##%####*-=           "
-    Write-Host "        ----------=***++++*%%*++++++=====+++####*+          "
-    Write-Host "         ==-----=+++++++=+*%#+=++-::.....:-*=###-:::.......:  "
-    Write-Host "    ....-++===+**+++====-=#%+===-:::..::-==*#+##=:......::==  "
-    Write-Host "    :::-+******+++===--=*%%%=--=--:::::-===##**#*-:::::-==    "
-    Write-Host "      -++++****++==--+##+-=#*--===-----===+#%#+#**=-==+=      "
-    Write-Host "    ............--=#%#+=---*%=-==++==++++*#%%%**####*+=       "
-    Write-Host " .....................:=#**+%*====++++**######%******#=-      "
-    Write-Host "...........................:=+**+++++++******##########+==    "
-    Write-Host ":::::::.........................:=###*******##+**#####*::-=   "
-    Write-Host ":::------::::........................:-=+*##%**###%#+-:::::-  "
-    Write-Host "--===++=*%@#==-::::.........................::::::::::::::--  "
-    Write-Host " =======*@@@@@@*==---:::::...................::::::::::::--=  "
-    Write-Host "   ==-.:*@@@@@@=::=+*+===--:::::::::........:::::::::::--===   "
-    Write-Host "     :..-%@@@@%:..:-++=#@%#*+===-----::::::::::::::---===-    "
-    Write-Host "      :::=%@@@=..::-=--#@@@@@@@%#+====================--      "
-    Write-Host "      ::::---::::-===::+@@@@@@@@@@*-==============---         "
-    Write-Host "       -:::::::-==++::::-#@@@@@@%+================-           "
-    Write-Host "          ---====+=-:::::::------================-            "
-    Write-Host "            -=====---::---=-:-----=============--             "
-    Write-Host "              ============--================---               "
-    Write-Host "                 =======================----                  "
-    Write-Host "                     =-=============----                      "
-    
-    Write-Host "`n  ╔══════════════════════════════════════════╗"
-    Write-Host "  ║  HoneyPort TCP Listener & IP Blocker     ║"
-    Write-Host "  ║  Coming for unauthorized connections...  ║"
-    Write-Host "  ╚══════════════════════════════════════════╝`n"
-}
-
 # Create log directory if it doesn't exist
 if (!(Test-Path -Path $LogPath)) {
     New-Item -ItemType Directory -Force -Path $LogPath | Out-Null
@@ -185,9 +144,6 @@ function Test-FirewallAccess {
         return $false
     }
 }
-
-# Display the cool ASCII art
-Show-BlueShellAsciiArt
 
 # Main script execution
 Write-CustomLog -Message "HoneyPort script started. Version 1.2" -LogFile $ActivityLogFile
