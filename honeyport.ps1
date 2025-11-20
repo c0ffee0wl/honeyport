@@ -124,7 +124,7 @@ function Initialize-EventLog {
         if (-not $eventLogExists) {
             try {
                 # Create the new event log
-                New-EventLog -LogName HoneyPort -Source BlueKit | Out-Null
+                New-EventLog -LogName Application -Source "HoneyPort" | Out-Null
                 Write-CustomLog -Message "HoneyPort event log created successfully." -LogFile $ActivityLogFile
             } catch {
                 # If New-EventLog fails, attempt an alternative method
@@ -132,7 +132,7 @@ function Initialize-EventLog {
                     # Using WMI to create the event log
                     $logCreation = @"
                     $ErrorActionPreference = 'Stop'
-                    $log = New-Object System.Diagnostics.Diagnostics.EventLog("HoneyPort")
+                    $log = New-Object System.Diagnostics.EventLog("HoneyPort")
                     $log.Source = "BlueKit"
 "@
                     powershell.exe -Command $logCreation
@@ -333,7 +333,7 @@ foreach ($port in $Ports) {
                             if ($WhiteList -notcontains $IP) {
                                 # Log to Windows Event Log
                                 try {
-                                    Write-EventLog -LogName HoneyPort -Source BlueKit -EventId 1002 -EntryType Information -Message "Connection from $IP detected on port $Port at $(Get-Date)"
+                                    Write-EventLog -LogName Application -Source "HoneyPort" -EventId 8415 -EntryType Information -Message "Connection from $IP detected on port $Port at $(Get-Date)"
                                 } catch {
                                     Write-Error "Failed to write to Event Log: $_"
                                 }
